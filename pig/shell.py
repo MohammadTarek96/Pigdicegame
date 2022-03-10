@@ -9,7 +9,8 @@ Start game menu, with the options to start a new game and exit
 A game menu, that will handle the input while in-game
 """
 import cmd
-from pig.core.game import Game
+from core.game import Game
+from core.player import HumanPlayer
 
 
 class MainMenuShell(cmd.Cmd):
@@ -19,11 +20,17 @@ class MainMenuShell(cmd.Cmd):
     intro = "Welcome to the game! Type help or ? to list commands. \n"
     prompt = "(PigGame)> "
     game = None
+    player_name = None
+    player_instance = None
 
     def __init__(self):
         """Initialize the menu"""
         super().__init__()
         self.game = Game()
+        
+        self.player_name = input("Hello. What is your name?> ")
+        self.player_instance = HumanPlayer(self.player_name)
+        self.game.add_new_player(self.player_instance)
 
     def do_start(self, _):
         """Starts the game, and launches the game shell"""
@@ -31,9 +38,19 @@ class MainMenuShell(cmd.Cmd):
         return True
 
     def do_add(self, _):
-        print(f"Currently, there are: {}")
         raise NotImplemented("This function has yet to be implemented")
 
+    def do_change(self, arg):
+        """
+        Command that allows the player to change params related to the game.
+        :param arg: the option specifing what to change. 
+            "name" - change the player name
+        """
+        if arg.lower() == "name":
+            self.player_name = input("(New name) ")
+            self.player_instance.change_name(self.player_name)
+        else:
+            print(f"at the momment, you cannot change {arg}")
 
     # all commands related to the quit & alias
     def do_exit(self, _):

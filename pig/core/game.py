@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from pig.core.player import Player
+from .player import Player
 
 class Game: 
     """
