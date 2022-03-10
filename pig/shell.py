@@ -28,6 +28,7 @@ class MainMenuShell(cmd.Cmd):
         super().__init__()
         self.game = Game()
         
+        # adds the player to the game
         self.player_name = input("Hello. What is your name?> ")
         self.player_instance = HumanPlayer(self.player_name)
         self.game.add_new_player(self.player_instance)
@@ -38,7 +39,8 @@ class MainMenuShell(cmd.Cmd):
         return True
 
     def do_add(self, _):
-        raise NotImplemented("This function has yet to be implemented")
+        new_player = self.game.add_new_player()
+        print(f"New player added. Let's welcome {new_player.name} to the table! \n There are {self.game.get_player_count()} player(s) at the table!")
 
     def do_change(self, arg):
         """
@@ -78,6 +80,7 @@ class GameShell(cmd.Cmd):
     - end/q/quit/EOF
     - roll
     - end_turn/pass
+    - restart
 
     ! immoral, but
     - CHEAT
@@ -90,6 +93,5 @@ class GameShell(cmd.Cmd):
         """Initialize the menu"""
         super.__init__()
         self.game = game
-
 
 
