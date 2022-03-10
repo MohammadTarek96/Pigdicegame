@@ -5,3 +5,7 @@ htmlcov/
 *.pyc
 dice/doc
 guess/doc
+
+**/.idea
+**/.vscode
+**/venv
