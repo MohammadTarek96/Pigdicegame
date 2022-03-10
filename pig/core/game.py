@@ -43,3 +43,14 @@ class Game:
 
         return new_player
 
+class Dice:
+    """
+    Class that will be responsible for the random parts of the game. Provides a test configuration, that will return 
+    the numbers provided in the list
+    """
+    test_list = None
+    def __init__(self, test_list = None):
+        self.test_list = test_list
+
+    def roll(self):
+        pass
