@@ -15,7 +15,12 @@ First to 100 points wins! Good luck!
 
 import shell
 
+
 def main():
     """Start the game by invoking the command loop"""
-    print(__doc__) # prints the text defined above
-    shell
+    print(__doc__)  # prints the text defined above
+    shell.MainMenuShell().cmdloop()
+
+
+if __name__ == "__main__":
+    main()

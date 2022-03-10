@@ -9,3 +9,4 @@ guess/doc
 **/.idea
 **/.vscode
 **/venv
+**/*.swp
