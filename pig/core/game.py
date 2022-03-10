@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
+from pig.core.player import Player
 
 class Game: 
     """
@@ -22,4 +23,10 @@ class Game:
         """
         return len(players)
 
+
+    def add_new_cpu_player(self, new_player = None):
+        """
+        Adds a new cpu player to the game.
+        """
+        raise NotImplemented("")
 
