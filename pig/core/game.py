@@ -42,3 +42,4 @@ class Game:
         self.players.append(new_player)
 
         return new_player
+

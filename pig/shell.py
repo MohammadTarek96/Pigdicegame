@@ -11,6 +11,7 @@ A game menu, that will handle the input while in-game
 import cmd
 from core.game import Game
 from core.player import HumanPlayer
+from core.exceptions import TooManyPlayersError
 
 
 class MainMenuShell(cmd.Cmd):
@@ -39,14 +40,17 @@ class MainMenuShell(cmd.Cmd):
         return True
 
     def do_add(self, _):
-        new_player = self.game.add_new_player()
-        print(f"New player added. Let's welcome {new_player.name} to the table! \n There are {self.game.get_player_count()} player(s) at the table!")
+        """Adds a new bot player to the game. Some say the game is more fun with more players!"""
+        try:
+            new_player = self.game.add_new_player()
+            print(f"New player added. Let's welcome {new_player.name} to the table! \n There are {self.game.get_player_count()} player(s) at the table!")
+        except TooManyPlayersError:
+            print("All the game slots are full! type [start] to start the game!")
 
     def do_change(self, arg):
         """
-        Command that allows the player to change params related to the game.
-        :param arg: the option specifing what to change. 
-            "name" - change the player name
+        Allows changing paramters of the game. Requires an argument. Example: "change name"
+        "name" - change the player name
         """
         if arg.lower() == "name":
             self.player_name = input("(New name) ")
@@ -56,7 +60,7 @@ class MainMenuShell(cmd.Cmd):
 
     # all commands related to the quit & alias
     def do_exit(self, _):
-        """Player has chosen to end the game."""
+        """Quits the game"""
         print("Until next time. Bye!")
         return True
 
@@ -69,7 +73,7 @@ class MainMenuShell(cmd.Cmd):
         return self.do_exit(arg)
 
     def do_EOF(self, arg):
-        """Ended due to no more input Ctrl+Z (win) / Ctrl+D (bash)"""
+        """Will end the game due to end of input"""
         return self.do_exit(arg)
 
 
