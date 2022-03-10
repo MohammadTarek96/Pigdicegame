@@ -31,7 +31,7 @@ class MainMenuShell(cmd.Cmd):
         return True
 
     def do_add(self, _):
-        print("Currently, there are: {}".format(self.game.get_player_count())
+        print(f"Currently, there are: {}")
         raise NotImplemented("This function has yet to be implemented")
 
 

@@ -24,9 +24,10 @@ class Game:
         return len(players)
 
 
-    def add_new_cpu_player(self, new_player = None):
+    def add_new_player(self, new_player = None):
         """
-        Adds a new cpu player to the game.
+        Adds a new player to the game.
+        :param new_player: the new player that will be added. if the new player is not provided, a bot player will be added
         """
         raise NotImplemented("")
 

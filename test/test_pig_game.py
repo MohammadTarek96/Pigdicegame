@@ -6,6 +6,7 @@ from pig.core.exceptions import TooManyPlayersError
 
 
 class GameTest(unittest.TestCase):
+    """ Tests the game class """
 
     def test_adding_new_player():
         
@@ -14,7 +15,7 @@ class GameTest(unittest.TestCase):
         self.assertEqual(game.get_player_count(), 0) 
 
         # adding one player increases the player by 1
-        game.add_new_cpu_player()
+        game.add_new_player()
         self.assertEqual(game.get_player_count(), 1)
 
 
@@ -25,5 +26,5 @@ class GameTest(unittest.TestCase):
         # adding more then 4 players will throw an error
         with self.assertRaises(TooManyPlayersError):
             for i in range(5):
-                game.add_new_cpu_player()
+                game.add_new_player()
 
