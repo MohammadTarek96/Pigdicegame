@@ -49,8 +49,14 @@ class Dice:
     the numbers provided in the list
     """
     test_list = None
+    test_index = 0
     def __init__(self, test_list = None):
         self.test_list = test_list
 
+    
     def roll(self):
-        pass
+        if (self.test_list is None):
+            return randint(1,6)
+        x = self.test_list[self.test_index]
+        self.test_index = (self.test_index + 1) % len(self.test_list)
+        return x
