@@ -1,8 +1,8 @@
 
 
 class Player:
-    name: str
-    score: int
+    score = 0
+    current_turn_score = 0
 
     def __init__(self, name):
         self.name = name
@@ -13,15 +13,12 @@ class Player:
     def __str__(self):
         return f"<{self.name}, score: {self.score}>"
 
-class HumanPlayer(Player):
-    current_turn_score: int
-    def __init__(self, name):
-        super().__init__(name)
-        self.current_turn_score = 0
-
     def finish_turn(self):
         self.score += self.current_turn_score
         self.current_turn_score = 0
+
+class HumanPlayer(Player):
+    pass
 
 
 class BotPlayer(Player):

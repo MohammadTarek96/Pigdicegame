@@ -37,6 +37,7 @@ class MainMenuShell(cmd.Cmd):
     def do_start(self, _):
         """Starts the game, and launches the game shell"""
         msg = "Your game will now start. Good luck!"
+
         return True
 
     def do_add(self, _):

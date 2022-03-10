@@ -13,10 +13,12 @@ class Game:
     """
 
     players = None
+    turn = 0
 
     def __init__(self):
         """ Start the game and the number of the players"""
         self.players = []
+        self.dice = Dice()
 
 
     def get_player_count(self):
@@ -42,6 +44,47 @@ class Game:
         self.players.append(new_player)
 
         return new_player
+
+    def roll_for_current_player(self):
+        """
+        Performs a roll for the current player.
+        :return : bool - true if it ends the turn, false otherwise
+        """
+        roll = self.dice.roll()
+        current_player = self.players[self.turn]
+        print(f"{current_player.name} rolled a {roll}")
+
+        # lose condition
+        if (roll == 1):
+            current_player.current_turn_score = 0
+            self.end_turn_for_current_player()
+            return True
+        
+        current_player.current_turn_score += roll
+        return False
+
+    def end_turn_for_current_player(self):
+
+        roll = self.dice.roll()
+        current_player = self.players[self.turn]
+        current_player.finish_turn()
+        # move to the next turn, circling back to 0 if it reached the end
+        self.turn = (self.turn + 1) % self.get_player_count()
+
+        if isinstance(self.players[self.turn], BotPlayer):
+            # take turns for bots
+            pass
+
+        if self.turn == 0:
+            pass
+
+    def round_end(self):
+        print(leaderboard)
+        raise NotImplemented
+
+    def leaderboard(self):
+        return "Leaderboard:\n" + "\n".join(map(lambda x: f"{x[0]+1}) {x[1].name}: {x[1].score}",
+            enumerate(sorted(list(self.players),key=lambda x: x.score, reverse=True))))
 
 class Dice:
     """
