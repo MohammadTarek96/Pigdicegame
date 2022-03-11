@@ -126,10 +126,17 @@ class GameShell(cmd.Cmd):
         self.reset_prompt()
     
     def reset_prompt(self):
+        """
+        Change the prompt to use the current player's name
+        """
         self.prompt = f"(PigGame {self.game.players[self.game.turn].name}'s turn) > "
 
     # game handlers
     def do_roll(self, arg):
+        """Roll [arg]*. 
+            missing arg - roll a normal roll
+            'a loaded dice {number}' - cheats for the player with the value indicated
+        """
         if (arg == ""):
             self.game.roll_for_current_player()
         elif (arg.lower().startswith("a loaded dice")):
@@ -151,6 +158,7 @@ class GameShell(cmd.Cmd):
             print("argument not recognized. Type '? end' for a list of possible arguments")
 
     def do_pass(self, _):
+        """ Pass. ends the turn for the player"""
         self.game.end_turn_for_current_player()
         self.reset_prompt()
         if self.game.game_ended:
