@@ -102,11 +102,17 @@ test: lint coverage
 #
 .PHONY: pydoc
 
-doc:
+pdoc:
 	@$(call MESSAGE,$@)
 	pdoc --force --html --output-dir doc/api pig/*.py
-
-doc: pdoc
+pyreverse:
+	@$(call MESSAGE,$@)
+	install -d doc/uml
+	pyreverse pig/*.py
+	dot -Tpng classes.dot -o doc/uml/classes.png
+	dot -Tpng packages.dot -o doc/uml/packages.png
+	rm -f classes.dot packages.dot
+doc: pdoc pyreverse
 
 
 
