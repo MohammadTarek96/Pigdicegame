@@ -139,10 +139,7 @@ make venv
 . .venv/bin/activate
 ```
 
-When you are done you can leave the venv using the command `deactivate`.
-
-Read more on [Python venv](https://docs.python.org/3/library/venv.html).
-
+When you are done you can leave the venv using the command `deactivate`
 
 
 ### Install the dependencies
