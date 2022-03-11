@@ -208,8 +208,7 @@ firefox htmlcov/index.html
 ```
 # Generate documintation for the project 
 make pydoc 
-```
-```
+
 # Generate UML diagrams 
 make 
 ```
