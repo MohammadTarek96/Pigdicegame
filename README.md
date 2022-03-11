@@ -4,13 +4,14 @@ developed by Mohammad Tarek Housary, Kotyba sayed.
 
 Basics of the game
 -------------------
-
+```
 we have decided to limit the game to 4 players 
 who can be either be bots or actual users. 
 
 the game can be played by a single player up to 4 playres. 
 
 to add a human player enter: add player 
+
 to add a bot enter: add bot
 
 actual Users can enter their names. 
@@ -30,23 +31,28 @@ with the same exact amount of points.
 the user is able to access a list of commands (help) by entering ? or help at anytime 
 
 the user is able to restart or exit the current game during the actual gameplay. 
+```
 
+```
+# Cheat
 the user can Cheat to reach the end of the game quickly by entering Cheat x
 when x is a number of points for example: Cheat 50 
-the user will be awarded 50 points to add to his current score. 
-
+the user will be awarded 50 points to add to his current score.
+```
+# More about the bots
 bots players have three different stratgies (Playstyles). 
 a bot will randomly be set to one of them. 
-
+```
 low risk: will pass turn on reaching 6 points 
 
 meduim risk: will pass turn on reaching 12 points 
 
 high risk: will pass turn on reaching 18 points.
-
+```
 
 list of the gameplay commands:
 ------------------------------
+```
 ? > list of commands. 
 
 help > list of commands.
@@ -64,6 +70,7 @@ Cheat > to add extra points to your turn without rolling the dice
 restart > to resatrt the game.
 
 q > to quit the game.
+```
 
 This game was developed in a TDD enviroment.
 ----------------------------------------------------------------------------------
