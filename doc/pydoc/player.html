@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module player</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>player</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/root/python-template-main/pig/player.py">/root/python-template-main/pig/player.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="player.html#Player">Player</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="player.html#BotPlayer">BotPlayer</a>
+</font></dt><dt><font face="helvetica, arial"><a href="player.html#HumanPlayer">HumanPlayer</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="player.html#Strategy">Strategy</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="player.html#HighRiskStrategy">HighRiskStrategy</a>
+</font></dt><dt><font face="helvetica, arial"><a href="player.html#LowRiskStrategy">LowRiskStrategy</a>
+</font></dt><dt><font face="helvetica, arial"><a href="player.html#MediumRiskStrategy">MediumRiskStrategy</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BotPlayer">class <strong>BotPlayer</strong></a>(<a href="player.html#Player">Player</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#BotPlayer">BotPlayer</a>(name,&nbsp;strategy=None)<br>
+&nbsp;<br>
+A&nbsp;bot&nbsp;player.&nbsp;Has&nbsp;a&nbsp;strategy&nbsp;property&nbsp;that&nbsp;will&nbsp;dictate&nbsp;how&nbsp;the&nbsp;player&nbsp;plays<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="player.html#BotPlayer">BotPlayer</a></dd>
+<dd><a href="player.html#Player">Player</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BotPlayer-__init__"><strong>__init__</strong></a>(self, name, strategy=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>strategy</strong> = None</dl>
+
+<hr>
+Methods inherited from <a href="player.html#Player">Player</a>:<br>
+<dl><dt><a name="BotPlayer-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="BotPlayer-change_name"><strong>change_name</strong></a>(self, new_name)</dt><dd><tt>Changes&nbsp;the&nbsp;name&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;new_name</tt></dd></dl>
+
+<dl><dt><a name="BotPlayer-finish_turn"><strong>finish_turn</strong></a>(self)</dt><dd><tt>Finishes&nbsp;a&nbsp;player's&nbsp;turn.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="player.html#Player">Player</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="player.html#Player">Player</a>:<br>
+<dl><dt><strong>current_turn_score</strong> = 0</dl>
+
+<dl><dt><strong>score</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="HighRiskStrategy">class <strong>HighRiskStrategy</strong></a>(<a href="player.html#Strategy">Strategy</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#HighRiskStrategy">HighRiskStrategy</a>&nbsp;for&nbsp;a&nbsp;bot,&nbsp;with&nbsp;the&nbsp;threshold&nbsp;of&nbsp;18<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="player.html#HighRiskStrategy">HighRiskStrategy</a></dd>
+<dd><a href="player.html#Strategy">Strategy</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>threshold</strong> = 18</dl>
+
+<hr>
+Methods inherited from <a href="player.html#Strategy">Strategy</a>:<br>
+<dl><dt><a name="HighRiskStrategy-should_roll"><strong>should_roll</strong></a>(self, current_score)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;decision&nbsp;is&nbsp;to&nbsp;play,&nbsp;false&nbsp;otherwise.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="player.html#Strategy">Strategy</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="HumanPlayer">class <strong>HumanPlayer</strong></a>(<a href="player.html#Player">Player</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#HumanPlayer">HumanPlayer</a>(name)<br>
+&nbsp;<br>
+A&nbsp;class&nbsp;that&nbsp;holds&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;player<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="player.html#HumanPlayer">HumanPlayer</a></dd>
+<dd><a href="player.html#Player">Player</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="player.html#Player">Player</a>:<br>
+<dl><dt><a name="HumanPlayer-__init__"><strong>__init__</strong></a>(self, name)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="HumanPlayer-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="HumanPlayer-change_name"><strong>change_name</strong></a>(self, new_name)</dt><dd><tt>Changes&nbsp;the&nbsp;name&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;new_name</tt></dd></dl>
+
+<dl><dt><a name="HumanPlayer-finish_turn"><strong>finish_turn</strong></a>(self)</dt><dd><tt>Finishes&nbsp;a&nbsp;player's&nbsp;turn.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="player.html#Player">Player</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="player.html#Player">Player</a>:<br>
+<dl><dt><strong>current_turn_score</strong> = 0</dl>
+
+<dl><dt><strong>score</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LowRiskStrategy">class <strong>LowRiskStrategy</strong></a>(<a href="player.html#Strategy">Strategy</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#LowRiskStrategy">LowRiskStrategy</a>&nbsp;for&nbsp;a&nbsp;bot,&nbsp;with&nbsp;the&nbsp;threshold&nbsp;of&nbsp;6<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="player.html#LowRiskStrategy">LowRiskStrategy</a></dd>
+<dd><a href="player.html#Strategy">Strategy</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>threshold</strong> = 6</dl>
+
+<hr>
+Methods inherited from <a href="player.html#Strategy">Strategy</a>:<br>
+<dl><dt><a name="LowRiskStrategy-should_roll"><strong>should_roll</strong></a>(self, current_score)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;decision&nbsp;is&nbsp;to&nbsp;play,&nbsp;false&nbsp;otherwise.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="player.html#Strategy">Strategy</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MediumRiskStrategy">class <strong>MediumRiskStrategy</strong></a>(<a href="player.html#Strategy">Strategy</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#MediumRiskStrategy">MediumRiskStrategy</a>&nbsp;for&nbsp;a&nbsp;bot,&nbsp;with&nbsp;the&nbsp;threshold&nbsp;of&nbsp;12<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="player.html#MediumRiskStrategy">MediumRiskStrategy</a></dd>
+<dd><a href="player.html#Strategy">Strategy</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>threshold</strong> = 12</dl>
+
+<hr>
+Methods inherited from <a href="player.html#Strategy">Strategy</a>:<br>
+<dl><dt><a name="MediumRiskStrategy-should_roll"><strong>should_roll</strong></a>(self, current_score)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;decision&nbsp;is&nbsp;to&nbsp;play,&nbsp;false&nbsp;otherwise.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="player.html#Strategy">Strategy</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Player">class <strong>Player</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Player">Player</a>(name)<br>
+&nbsp;<br>
+A&nbsp;class&nbsp;that&nbsp;holds&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;player<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Player-__init__"><strong>__init__</strong></a>(self, name)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Player-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="Player-change_name"><strong>change_name</strong></a>(self, new_name)</dt><dd><tt>Changes&nbsp;the&nbsp;name&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;new_name</tt></dd></dl>
+
+<dl><dt><a name="Player-finish_turn"><strong>finish_turn</strong></a>(self)</dt><dd><tt>Finishes&nbsp;a&nbsp;player's&nbsp;turn.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>current_turn_score</strong> = 0</dl>
+
+<dl><dt><strong>score</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Strategy">class <strong>Strategy</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;class&nbsp;that&nbsp;will&nbsp;take&nbsp;decisions&nbsp;for&nbsp;the&nbsp;bot,&nbsp;based&nbsp;on&nbsp;provided&nbsp;parameters<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Strategy-should_roll"><strong>should_roll</strong></a>(self, current_score)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;decision&nbsp;is&nbsp;to&nbsp;play,&nbsp;false&nbsp;otherwise.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>threshold</strong> = 0</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

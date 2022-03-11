@@ -9,14 +9,16 @@ Start game menu, with the options to start a new game and exit
 A game menu, that will handle the input while in-game
 """
 import cmd
-from core.game import Game
-from core.player import HumanPlayer
-from core.exceptions import TooManyPlayersError
+from game import Game
+from player import HumanPlayer
+from exceptions import TooManyPlayersError
+
 
 class MainMenuShell(cmd.Cmd):
     """
     Greets the player, and guides him through to starting the game
     """
+
     intro = "Welcome to the game! Type help or ? to list commands. \n"
     prompt = "(PigGameMenu)> "
     game = None
@@ -38,20 +40,22 @@ class MainMenuShell(cmd.Cmd):
 
     def do_start(self, _):
         """Starts the game, and launches the game shell"""
-        msg = "Your game will now start. Good luck!"
-        quit_helper = [False] # passing a list will be a pass-by-reference, and any modifications done will be usable here
-        game_shell = GameShell(self.game, quit_helper).cmdloop()
+        print("Your game will now start. Good luck!")
+        quit_helper = [
+            False
+        ]  # passing a list will be a pass-by-reference, and any modifications done will be usable here
+        GameShell(self.game, quit_helper).cmdloop()
         if not quit_helper[0]:
             self.reset_game()
         return quit_helper[0]
 
     def do_add(self, arg):
         """
-            Adds a new player to the game. Some say the game is more fun with more players!
-            Requires an argument, for example: add bot
-            argument values: 
-                bot: adds a new bot
-                player: adds a new player
+        Adds a new player to the game. Some say the game is more fun with more players!
+        Requires an argument, for example: add bot
+        argument values:
+            bot: adds a new bot
+            player: adds a new player
         """
         if arg == "":
             print("You need to provide an argument. Type '? add' for more information")
@@ -59,26 +63,22 @@ class MainMenuShell(cmd.Cmd):
         elif arg == "bot":
             try:
                 new_player = self.game.add_new_player()
-                print(f"New player added. Let's welcome {new_player.name} to the table! \n There are {self.game.get_player_count()} player(s) at the table!")
+                print(
+                    f"New player added. Let's welcome {new_player.name} to the table! \n There are "
+                    f"{self.game.get_player_count()} player(s) at the table!"
+                )
             except TooManyPlayersError:
                 print("All the game slots are full! type [start] to start the game!")
         elif arg == "player":
             try:
-                new_player_name = input("(PlayerName)>")
+                new_player_name = input("\t(PlayerName)>")
                 new_player = self.game.add_new_player(HumanPlayer(new_player_name))
-                print(f"New player added. Let's welcome {new_player.name} to the table! \n There are {self.game.get_player_count()} player(s) at the table!")
+                print(
+                    f"New player added. Let's welcome {new_player.name} to the table! \n"
+                    f"There are {self.game.get_player_count()} player(s) at the table!"
+                )
             except TooManyPlayersError:
                 print("All the game slots are full! type [start] to start the game!")
-    def do_change(self, arg):
-        """
-        Allows changing paramters of the game. Requires an argument. Example: "change name"
-        "name" - change the player name
-        """
-        if arg.lower() == "name":
-            self.player_name = input("(New name) ")
-            self.player_instance.change_name(self.player_name)
-        else:
-            print(f"at the momment, you cannot change {arg}")
 
     # all commands related to the quit & alias
     def do_exit(self, _):
@@ -113,7 +113,9 @@ class GameShell(cmd.Cmd):
 
     ! immoral but
     - roll [a loaded dice {points}]
+    - cheat
     """
+
     intro = "Your turn. Type ? or help to list all the commands"
     prompt = "(PigGame)>"
     game = None
@@ -124,7 +126,7 @@ class GameShell(cmd.Cmd):
         self.game = game
         self.quit_helper = quit_helper
         self.reset_prompt()
-    
+
     def reset_prompt(self):
         """
         Change the prompt to use the current player's name
@@ -133,43 +135,56 @@ class GameShell(cmd.Cmd):
 
     # game handlers
     def do_roll(self, arg):
-        """Roll [arg]*. 
-            missing arg - roll a normal roll
-            'a loaded dice {number}' - cheats for the player with the value indicated
+        """Roll [arg]*.
+        missing arg - roll a normal roll
+        'a loaded dice {number}' - cheats for the player with the value indicated
         """
-        if (arg == ""):
+        if arg == "":
             self.game.roll_for_current_player()
-        elif (arg.lower().startswith("a loaded dice")):
-            self.game.cheat_for_current_player(int(arg[len("a loaded dice"):].strip()))
+        elif arg.lower().startswith("a loaded dice"):
+            try:
+                self.game.cheat_for_current_player(
+                    int(arg[len("a loaded dice") :].strip())
+                )
+            except ValueError:
+                print(f"I cannot cheat for {arg}")
 
     def do_end(self, arg):
-        """ End [arg].
-            - g/game: ends the game. Alias for exit
-            - t/turn: ends the turn. Alias for pass
+        """End [arg].
+        - g/game: ends the game. Alias for exit
+        - t/turn: ends the turn. Alias for pass
         """
         if arg == "":
             print("end requires an additional argument.Type '? end' for help")
             return False
-        elif arg.lower() in ['t', 'turn']:
+        elif arg.lower() in ["t", "turn"]:
             return self.do_pass("")
-        elif arg.lower() in ['g', 'game']:
+        elif arg.lower() in ["g", "game"]:
             return self.do_exit("")
         else:
-            print("argument not recognized. Type '? end' for a list of possible arguments")
+            print(
+                "argument not recognized. Type '? end' for a list of possible arguments"
+            )
 
     def do_pass(self, _):
-        """ Pass. ends the turn for the player"""
+        """Pass. ends the turn for the player"""
         self.game.end_turn_for_current_player()
         self.reset_prompt()
         if self.game.game_ended:
             print("The game ended. Hopefully, you had fun! See you in another game?")
             return self.do_restart(_)
 
-    # game commands 
-    def do_restart(self,_):
+    def do_cheat(self, arg):
+        """Cheat [points]. Adds however many points typed to the current player's score"""
+        try:
+            self.game.cheat_for_current_player(int(arg.strip()))
+        except ValueError:
+            print(f"I cannot cheat for {arg}")
+
+    # game commands
+    def do_restart(self, _):
         """Return to the main menu, and lets you configure a new game"""
         return True
-
 
     def do_q(self, _):
         """Ends the game, alias for exit"""

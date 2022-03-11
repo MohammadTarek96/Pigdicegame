@@ -1,9 +1,8 @@
-
 import unittest
-from pig.core.game import Dice
+from pig.game import Dice
+
 
 class TestDice(unittest.TestCase):
-
     def test_random_rolls(self):
         """
         Test that the dice does not produce results outside the range 1-6
@@ -30,7 +29,7 @@ class TestDice(unittest.TestCase):
 
         dice = Dice(test_configuration)
         dice_rolls = []
-        
+
         for i in range(2 * len(test_configuration)):
             dice_rolls.append(dice.roll())
 
@@ -38,4 +37,3 @@ class TestDice(unittest.TestCase):
         expected_list.extend(test_configuration)
         expected_list.extend(test_configuration)
         self.assertListEqual(expected_list, dice_rolls)
-        

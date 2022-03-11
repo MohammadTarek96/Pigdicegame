@@ -1,15 +1,13 @@
-
-
 import unittest
-from pig.core.player import HumanPlayer
+from pig.player import HumanPlayer
+
 
 class TestHumanPlayer(unittest.TestCase):
-
     def test_initialization(self):
-        
+
         name = "john dice"
         player = HumanPlayer(name)
-        
+
         self.assertIsInstance(player, HumanPlayer)
         self.assertEqual(name, player.name)
 
@@ -21,4 +19,3 @@ class TestHumanPlayer(unittest.TestCase):
         player.change_name(new_name)
 
         self.assertEqual(new_name, player.name)
-
