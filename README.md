@@ -25,8 +25,7 @@ all players are meant to play the same amount of turns.
 
 tha last turn is when someone reaches or crosses 100 points. 
 
-there could be multiple winners, if multiple players finish the last turn
-with the same exact amount of points. 
+if multiple players cross 100 at the same turn, then it's a Draw. 
 
 the user is able to access a list of commands (help) by entering ? or help at anytime 
 
