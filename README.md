@@ -1,20 +1,68 @@
-Python development project template
+Pig Dice Game 
 ==========================
+developed by Mohammad Tarek Housary, Kotyba sayed. 
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+Basics of the game
+-------------------
 
-A template for a Python development project.
+we have decided to limit the game to 4 players 
+who can be either be bots or actual users. 
 
-[[_TOC_]]
+the game can be played by a single player up to 4 playres. 
+
+to add a human player enter: add player 
+to add a bot enter: add bot
+
+actual Users can enter their names. 
+
+players will enter: roll to roll the dice till they roll a 1, or decide to pass.
+
+by rolling a 1 the player turn will end and he will not carry his score to the next turn 
+by entering: pass the player will end his turn and carry his score forward. 
+
+all players are meant to play the same amount of turns. 
+
+tha last turn is when someone reaches or crosses 100 points. 
+
+there could be multiple winners, if multiple players finish the last turn
+with the same exact amount of points. 
+
+the user is able to access a list of commands (help) by entering ? or help at anytime 
+
+the user is able to restart or exit the current game during the actual gameplay. 
+
+the user can Cheat to reach the end of the game quickly by entering Cheat x
+when x is a number of points for example: Cheat 50 
+the user will be awarded 50 points to add to his current score. 
+
+bots players have three different stratgies (Playstyles). 
+a bot will randomly be set to one of them. 
+low risk: will pass turn on reaching 6 points 
+meduim risk: will pass turn on reaching 12 points 
+high risk: will pass turn on reaching 18 points.
 
 
+list of the gameplay commands:
+----------------------------------------------------------------------------------
+? > list of commands 
+help > list of commands 
+add player > to add a human player 
+add bot > to add a a bot player 
+roll > to roll the die 
+pass > to end turn and keep your score
+Cheat > to add extra points to your turn without rolling the dice
+restart > to resatrt the game 
+q > to quit the game
 
-Get going
+This game was developed in a TDD enviroment.
+----------------------------------------------------------------------------------
+The next will be a list of commands to run the game in the terminal, how to install the requiermnts to run the project development enviroment,
+unittest the code, generate documentation, generate UML diagrams, and metrics. 
+
+Get going and Run the game
 --------------------------
 
 This is how you can work with the development environment.
-
-
 
 ### Check version of Python
 
@@ -33,9 +81,29 @@ export PYTHON=python3
 make version
 ```
 
-Read more on [GNU make](https://www.gnu.org/software/make/manual/make.html).
 
+### Run the code
 
+the game can be started like this.
+
+provide the path of the game folder 
+in your terminal 
+
+for example if you are using git bash terminal 
+
+$ cd Downloads\Pigdicegame-main\Pigdicegame-main
+
+this may differe on your machine so manually get the correct path 
+
+```
+# Execute the main program
+python pig/main.py
+```
+
+All code is stored below the directory `pig/`. 
+
+Get going and setup the development enviroment 
+----------------------------------------------
 
 ### Python virtual environment
 
@@ -71,22 +139,6 @@ make install
 # Check what is installed
 make installed
 ```
-
-Read more on [Python PIP](https://pypi.org/project/pip/).
-
-
-
-### Run the code
-
-The example program can be started like this.
-
-```
-# Execute the main program
-python guess/main.py
-```
-
-All code is stored below the directory `guess/`.
-
 
 
 ### Run the validators
@@ -132,69 +184,20 @@ You can open a web browser to inspect the code coverage as a generated HTML repo
 firefox htmlcov/index.html
 ```
 
-Read more on:
+# Generate documintation for the project 
+make pydoc 
 
-* [unittest](https://docs.python.org/3/library/unittest.html)
-* [coverage](https://coverage.readthedocs.io/)
-
-
-
-### Run parts of the testsuite
-
-You can also run parts of the testsuite, for examples files or methods in files.
-
-You can run all tests from a testfile.
-
-```
-# Run a testfile
-python -m unittest test.test_game
-```
-
-You can also run a single testcase from a file.
-
-```
-# Run a test method, in a class, in a testfile
-python -m unittest test.test_game.TestGameClass.test_init_default_object
-```
-
+# Generate UML diagrams 
+make 
 
 
 ### Remove generated files
 
 You can remove all generated files by this.
 
-```
 # Remove files generated for tests or caching
 make clean
 
 # Do also remove all you have installed
 make clean-all
-```
 
-
-
-Optional targets
---------------------------
-
-These targets might be helpful when running your project.
-
-
-
-### Codestyle with black
-
-You can unify the codestyle using black. Running black will change your source code to have a codestyle according to black codestyle.
-
-```
-# Same same, different names
-make black
-make codestyle
-```
-
-Read more on [black](https://pypi.org/project/black/).
-
-
-
-More targets
---------------------------
-
-The Makefile contains more targets, they are however not yet tested on this directory structure.
