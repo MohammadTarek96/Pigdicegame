@@ -5,8 +5,8 @@ developed by Mohammad Tarek Housary, Kotyba sayed.
 Basics of the game
 -------------------
 ```
-we have decided to limit the game to 4 players 
-who can be either be bots or actual users. 
+The game is limited to 4 players 
+who can either be bots or actual users. 
 
 the game can be played by a single player up to 4 playres. 
 
