@@ -1,20 +1,84 @@
-Python development project template
+Pig Dice Game 
 ==========================
+developed by Mohammad Tarek Housary, Kotyba sayed. 
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+Basics of the game
+-------------------
+```
+The game is limited to 4 players 
+who can either be bots or actual users. 
 
-A template for a Python development project.
+the game can be played by a single player up to 4 playres. 
 
-[[_TOC_]]
+to add a human player enter: add player 
 
+to add a bot enter: add bot
 
+actual Users can enter their names. 
 
-Get going
+players will enter: roll to roll the dice till they roll a 1, or decide to pass.
+
+by rolling a 1 the player turn will end and he will not carry his score to the next turn 
+by entering: pass the player will end his turn and carry his score forward. 
+
+all players are meant to play the same amount of turns. 
+
+tha last turn is when someone reaches or crosses 100 points. 
+
+there could be multiple winners, if multiple players finish the last turn
+with the same exact amount of points. 
+
+the user is able to access a list of commands (help) by entering ? or help at anytime 
+
+the user is able to restart or exit the current game during the actual gameplay. 
+```
+
+```
+# Cheat
+the user can Cheat to reach the end of the game quickly by entering Cheat x
+when x is a number of points for example: Cheat 50 
+the user will be awarded 50 points to add to his current score.
+```
+# More about the bots
+bots players have three different stratgies (Playstyles). 
+a bot will randomly be set to one of them. 
+```
+low risk: will pass turn on reaching 6 points 
+
+meduim risk: will pass turn on reaching 12 points 
+
+high risk: will pass turn on reaching 18 points.
+```
+
+list of the gameplay commands:
+------------------------------
+```
+? > list of commands. 
+
+help > list of commands.
+
+add player > to add a human player. 
+
+add bot > to add a a bot player. 
+
+roll > to roll the die. 
+
+pass > to end turn and keep your score.
+
+Cheat > to add extra points to your turn without rolling the dice
+
+restart > to resatrt the game.
+
+q > to quit the game.
+```
+
+This game was developed in a TDD enviroment.
+----------------------------------------------------------------------------------
+The next will be a list of commands to run the game in the terminal, how to install the requiermnts to run the project development enviroment,
+unittest the code, generate documentation, generate UML diagrams, for more look into the makefile! 
+
+Get going and Run the game
 --------------------------
-
-This is how you can work with the development environment.
-
-
 
 ### Check version of Python
 
@@ -33,9 +97,32 @@ export PYTHON=python3
 make version
 ```
 
-Read more on [GNU make](https://www.gnu.org/software/make/manual/make.html).
+
+### Run the code
+
+the game can be started like this.
+
+```
+provide the path of the game folder 
+in your terminal 
+
+for example if you are using git bash terminal 
+
+$ cd Downloads\Pigdicegame-main\Pigdicegame-main
+
+this may differe on your machine so manually get the correct path 
 
 
+# Execute the main program
+python pig/main.py
+```
+
+All code is stored below the directory `pig/`. 
+
+Get going and setup the development enviroment 
+----------------------------------------------
+
+This is how you can work with the development environment.
 
 ### Python virtual environment
 
@@ -52,10 +139,7 @@ make venv
 . .venv/bin/activate
 ```
 
-When you are done you can leave the venv using the command `deactivate`.
-
-Read more on [Python venv](https://docs.python.org/3/library/venv.html).
-
+When you are done you can leave the venv using the command `deactivate`
 
 
 ### Install the dependencies
@@ -72,22 +156,6 @@ make install
 make installed
 ```
 
-Read more on [Python PIP](https://pypi.org/project/pip/).
-
-
-
-### Run the code
-
-The example program can be started like this.
-
-```
-# Execute the main program
-python guess/main.py
-```
-
-All code is stored below the directory `guess/`.
-
-
 
 ### Run the validators
 
@@ -101,15 +169,6 @@ make pylint
 # Run all on the same time
 make lint
 ```
-
-You might need to update the Makefile if you change the name of the source directory currently named `guess/`.
-
-Read more on:
-
-* [flake8](https://flake8.pycqa.org/en/latest/)
-* [pylint](https://pylint.org/)
-
-
 
 ### Run the unittests
 
@@ -132,37 +191,19 @@ You can open a web browser to inspect the code coverage as a generated HTML repo
 firefox htmlcov/index.html
 ```
 
-Read more on:
-
-* [unittest](https://docs.python.org/3/library/unittest.html)
-* [coverage](https://coverage.readthedocs.io/)
-
-
-
-### Run parts of the testsuite
-
-You can also run parts of the testsuite, for examples files or methods in files.
-
-You can run all tests from a testfile.
+#### Generating documintation and UML diagrams
 
 ```
-# Run a testfile
-python -m unittest test.test_game
+# Generate documintation for the project 
+make pydoc 
+
+# Generate UML diagrams 
+make 
 ```
-
-You can also run a single testcase from a file.
-
-```
-# Run a test method, in a class, in a testfile
-python -m unittest test.test_game.TestGameClass.test_init_default_object
-```
-
-
 
 ### Remove generated files
 
 You can remove all generated files by this.
-
 ```
 # Remove files generated for tests or caching
 make clean
@@ -171,30 +212,8 @@ make clean
 make clean-all
 ```
 
+# For more please check the the makefile! 
 
-
-Optional targets
---------------------------
-
-These targets might be helpful when running your project.
-
-
-
-### Codestyle with black
-
-You can unify the codestyle using black. Running black will change your source code to have a codestyle according to black codestyle.
-
-```
-# Same same, different names
-make black
-make codestyle
-```
-
-Read more on [black](https://pypi.org/project/black/).
-
-
-
-More targets
---------------------------
-
-The Makefile contains more targets, they are however not yet tested on this directory structure.
+We hope that you will enjoy the game! and have easy time revewing the whole project!
+------------------------------------------------------------------------------------
+Thanks for reading! 
