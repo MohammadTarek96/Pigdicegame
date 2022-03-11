@@ -37,8 +37,11 @@ the user will be awarded 50 points to add to his current score.
 
 bots players have three different stratgies (Playstyles). 
 a bot will randomly be set to one of them. 
+
 low risk: will pass turn on reaching 6 points 
+
 meduim risk: will pass turn on reaching 12 points 
+
 high risk: will pass turn on reaching 18 points.
 
 
