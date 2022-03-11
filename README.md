@@ -80,8 +80,6 @@ unittest the code, generate documentation, generate UML diagrams, for more look 
 Get going and Run the game
 --------------------------
 
-This is how you can work with the development environment.
-
 ### Check version of Python
 
 Check what version of Python you have. The Makefile uses `PYTHON=python` as default.
@@ -104,6 +102,7 @@ make version
 
 the game can be started like this.
 
+```
 provide the path of the game folder 
 in your terminal 
 
@@ -113,7 +112,7 @@ $ cd Downloads\Pigdicegame-main\Pigdicegame-main
 
 this may differe on your machine so manually get the correct path 
 
-```
+
 # Execute the main program
 python pig/main.py
 ```
@@ -122,6 +121,8 @@ All code is stored below the directory `pig/`.
 
 Get going and setup the development enviroment 
 ----------------------------------------------
+
+This is how you can work with the development environment.
 
 ### Python virtual environment
 
