@@ -67,4 +67,72 @@ class TestGame(unittest.TestCase):
         self.assertEqual(0, player.score)
         self.assertEqual(1, game.turn)
 
+    def test_end_turn(self):
+        player = Player("player")
+        second_player = Player("second")
+        game = Game()
+        game.dice = Dice([6])
+        game.players = [player, second_player]
+        
+        # without any rolls score should be 0, turn moves to next
+        game.end_turn_for_current_player()
+        # assert no changes in score, but a change in turn
+        self.assertEqual(0, player.score)
+        self.assertEqual(0, player.current_turn_score)
+        self.assertEqual(1, game.turn)
 
+        # rolled two 6s for the second player
+        game.roll_for_current_player()
+        game.roll_for_current_player()
+        game.end_turn_for_current_player()
+        # assert that the turn ended: next turn, and the player has 12 point added to his score
+        self.assertEqual(12, second_player.score)
+        # assert that his current_turn_score has ended
+        self.assertEqual(0, second_player.current_turn_score)
+        self.assertEqual(0, game.turn)
+
+    def test_check_if_game_ended_no_players(self):
+        player = Player("p1")
+        player_2 = Player("p2")
+        game = Game()
+        game.players = [player,player_2]
+        # check for the game state, and method return value
+        self.assertFalse(game.check_if_game_ended())
+        self.assertFalse(game.game_ended)
+
+    def test_check_if_game_ended_one_player(self):
+        player = Player("p1")
+        player.score = 103
+
+        player_2 = Player("p2")
+        player_2.score = 95
+        game = Game()
+        game.dice = Dice([6,6,1,6,1])
+        game.players = [player, player_2]
+        self.assertTrue(game.check_if_game_ended())
+        self.assertTrue(game.game_ended)
+        # assert that the game did not do a end of game simulation
+        self.assertEqual(103, player.score)
+        self.assertEqual(95, player_2.score)
+
+    def test_check_if_game_ended_multiple_players(self):
+        player = Player("p1")
+        player.score = 105
+
+        player_2 = Player("p2")
+        player_2.score = 103
+
+        player_3 = Player("p3")
+        player_3.score = 10
+
+        game = Game()
+        game.dice = Dice([6, 6, 1, 6, 1])
+        game.players = [player, player_2, player_3]
+
+        self.assertTrue(game.check_if_game_ended())
+        self.assertTrue(game.game_ended)
+        
+        # check that it did simulate rolls
+        self.assertEqual(105 + 6 + 6, player.score)
+        self.assertEqual(103 + 6, player_2.score)
+        self.assertEqual(10, player_3.score)

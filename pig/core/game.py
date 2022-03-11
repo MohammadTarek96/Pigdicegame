@@ -14,6 +14,7 @@ class Game:
 
     players = None
     turn = 0
+    game_ended = False
 
     def __init__(self):
         """ Start the game and the number of the players"""
@@ -77,20 +78,46 @@ class Game:
 
         if self.turn == 0:
             self.round_end()
-            self.check_for_game_end()
-
-    def do_leaderboard(self):
-        print(self.leaderboard())
 
     def round_end(self):
+        self.check_if_game_ended()
         print(self.leaderboard())
 
     def leaderboard(self):
         return "Leaderboard:\n" + "\n".join(map(lambda x: f"{x[0]+1}) {x[1].name}: {x[1].score}",
-            enumerate(sorted(list(self.players),key=lambda x: x.score, reverse=True))))
+            enumerate(sorted(self.players,key=lambda x: x.score, reverse=True))))
 
-    def check_for_game_end(self):
-        pass
+    def check_if_game_ended(self):
+        """
+        The function checks whether the game has ended, and simulates a roll sequence for everyone over 100
+        :return: bool, True if the game has ended, k
+        """
+        players_over_100 = list(filter(lambda x: x.score > 100, self.players))
+        # No winners
+        if len(players_over_100) == 0: 
+            return False
+        
+        if len(players_over_100) == 1:
+            self.game_ended = True
+            print(f"AAAAAAAAAAAAnd the winner iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiis: {players_over_100[0].score}")
+            return True
+
+        print("Multiple winners! Rolling for everyone until they hit a 1")
+        for i in players_over_100:
+            while True:
+                print(f"Rolling for {i.name}")
+                roll = self.dice.roll()
+                if roll == 1:
+                    print(f"Rolled a 1. Final score for {i.name} is {i.score}")
+                    break
+                i.score += roll
+                print(f"Rolled a {roll}. {i.name}'s score is {i.score}")
+        
+        winner = sorted(players_over_100, key=lambda x: x.score, reverse=True)[0]
+        self.game_ended = True
+        print(f"The results are in. The winner is {winner.name}, with a score of {winner.score}")
+        return True
+            
 
 class Dice:
     """

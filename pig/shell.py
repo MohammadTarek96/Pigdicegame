@@ -104,8 +104,11 @@ class GameShell(cmd.Cmd):
         self.quit_helper = quit_helper
     
     # game handlers
-    def do_roll(self, _):
-        self.game.roll_for_current_player()
+    def do_roll(self, arg):
+        if (arg == ""):
+            self.game.roll_for_current_player()
+        elif (arg.lower().startswith("a loaded dice")):
+            self.game.cheat_for_current_player(int(arg[len("a loaded dice"):].strip()))
 
     def do_end(self, arg):
         """ End [arg].
