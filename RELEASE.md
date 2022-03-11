@@ -5,24 +5,18 @@ Decide on a way how to handled your relaeases and version numbers. Document it h
 
 For example like this...
 
-
-
-v2.0.0 (2022-02-05)
+v2.0.0 (2022-03-11)
 ------------------------
+Expanding the information in the REREADME.md file
+Fixing a bug 
 
-* Moved to a new location.
 
-
-
-v1.1.0 (2021-02-12)
+v1.1.0 (2022-03-03)
 ------------------------
+teasting the enviroment 
+fixing minor bugs 
 
-* Enabling generating documentation from comments using pdoc and pydoc.
-* Enabling UML documentation using pyreverse.
-
-
-
-v1.0.0 (2021-02-12)
+v1.0.0 (2022-03-01)
 ------------------------
-
-* First release, extracted from course material and further developed.
+ First realese of the game. 
+ creating the files 
