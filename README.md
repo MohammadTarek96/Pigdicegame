@@ -224,3 +224,9 @@ make clean
 # Do also remove all you have installed
 make clean-all
 ```
+
+# For more please check the the makefile! 
+
+We hope that you will enjoy the game! and have easy time revewing the whole project!
+------------------------------------------------------------------------------------
+Thanks for reading! 
