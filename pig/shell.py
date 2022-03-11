@@ -26,8 +26,11 @@ class MainMenuShell(cmd.Cmd):
     def __init__(self):
         """Initialize the menu"""
         super().__init__()
+        self.reset_game()
+
+    def reset_game(self):
+        """Resets the game, and creates the first player"""
         self.game = Game()
-        
         # adds the player to the game
         self.player_name = input("Hello. What is your name?> ")
         self.player_instance = HumanPlayer(self.player_name)
@@ -38,16 +41,34 @@ class MainMenuShell(cmd.Cmd):
         msg = "Your game will now start. Good luck!"
         quit_helper = [False] # passing a list will be a pass-by-reference, and any modifications done will be usable here
         game_shell = GameShell(self.game, quit_helper).cmdloop()
+        if not quit_helper[0]:
+            self.reset_game()
         return quit_helper[0]
 
-    def do_add(self, _):
-        """Adds a new bot player to the game. Some say the game is more fun with more players!"""
-        try:
-            new_player = self.game.add_new_player()
-            print(f"New player added. Let's welcome {new_player.name} to the table! \n There are {self.game.get_player_count()} player(s) at the table!")
-        except TooManyPlayersError:
-            print("All the game slots are full! type [start] to start the game!")
-
+    def do_add(self, arg):
+        """
+            Adds a new player to the game. Some say the game is more fun with more players!
+            Requires an argument, for example: add bot
+            argument values: 
+                bot: adds a new bot
+                player: adds a new player
+        """
+        if arg == "":
+            print("You need to provide an argument. Type '? add' for more information")
+            return False
+        elif arg == "bot":
+            try:
+                new_player = self.game.add_new_player()
+                print(f"New player added. Let's welcome {new_player.name} to the table! \n There are {self.game.get_player_count()} player(s) at the table!")
+            except TooManyPlayersError:
+                print("All the game slots are full! type [start] to start the game!")
+        elif arg == "player":
+            try:
+                new_player_name = input("(PlayerName)>")
+                new_player = self.game.add_new_player(HumanPlayer(new_player_name))
+                print(f"New player added. Let's welcome {new_player.name} to the table! \n There are {self.game.get_player_count()} player(s) at the table!")
+            except TooManyPlayersError:
+                print("All the game slots are full! type [start] to start the game!")
     def do_change(self, arg):
         """
         Allows changing paramters of the game. Requires an argument. Example: "change name"
@@ -102,7 +123,11 @@ class GameShell(cmd.Cmd):
         super().__init__()
         self.game = game
         self.quit_helper = quit_helper
+        self.reset_prompt()
     
+    def reset_prompt(self):
+        self.prompt = f"(PigGame {self.game.players[self.game.turn].name}'s turn) > "
+
     # game handlers
     def do_roll(self, arg):
         if (arg == ""):
@@ -127,6 +152,7 @@ class GameShell(cmd.Cmd):
 
     def do_pass(self, _):
         self.game.end_turn_for_current_player()
+        self.reset_prompt()
         if self.game.game_ended:
             print("The game ended. Hopefully, you had fun! See you in another game?")
             return self.do_restart(_)

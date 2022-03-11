@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from .player import Player, BotPlayer
+from .player import Player, BotPlayer, HumanPlayer
 from .exceptions import TooManyPlayersError
 from random import randint
 
@@ -66,18 +66,33 @@ class Game:
         return False
 
     def end_turn_for_current_player(self):
-        roll = self.dice.roll()
         current_player = self.players[self.turn]
         current_player.finish_turn()
         print(f"\tTurn ends. Total accumulated score {current_player.score}")
         # move to the next turn, circling back to 0 if it reached the end
         self.turn = (self.turn + 1) % self.get_player_count()
+        turn = self.turn
 
-        if isinstance(self.players[self.turn], BotPlayer):
-            self.end_turn_for_current_player()
+        while isinstance(self.players[self.turn], BotPlayer):
+            self.play_for_bot()
+        
+        current_player = self.players[turn]
 
-        if self.turn == 0:
+        if turn == 0:
             self.round_end()
+
+        if isinstance(current_player, HumanPlayer):
+            print(f"it's {current_player.name}'s turn!")
+
+    def play_for_bot(self):
+        current_player = self.players[self.turn]
+        while True: 
+            if current_player.strategy.should_roll(current_player.current_turn_score):
+                if self.roll_for_current_player():
+                    break
+            else:
+                self.end_turn_for_current_player()
+                break
 
     def round_end(self):
         self.check_if_game_ended()

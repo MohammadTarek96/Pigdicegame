@@ -1,4 +1,5 @@
 
+from random import choice
 
 class Player:
     score = 0
@@ -22,5 +23,26 @@ class HumanPlayer(Player):
 
 
 class BotPlayer(Player):
-    pass
+    strategy = None
+    def __init__(self, name, strategy = None):
+        super().__init__(name)
+        if strategy is None:
+            strategy = choice([LowRiskStrategy(), MediumRiskStrategy(), HighRiskStrategy()])
 
+        self.strategy = strategy
+
+
+class Strategy:
+    threshold = 0
+
+    def should_roll(self, current_score):
+        return current_score <= self.threshold
+
+class LowRiskStrategy(Strategy):
+    threshold = 6
+
+class MediumRiskStrategy(Strategy):
+    threshold = 12
+
+class HighRiskStrategy(Strategy):
+    threshold = 18

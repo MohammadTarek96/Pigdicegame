@@ -2,7 +2,7 @@
 
 import unittest
 from pig.core.game import Game, Dice
-from pig.core.player import BotPlayer, Player
+from pig.core.player import BotPlayer, Player, LowRiskStrategy
 from pig.core.exceptions import TooManyPlayersError
 
 
@@ -147,3 +147,31 @@ class TestGame(unittest.TestCase):
         # Make sure that the cheat only happens once
         game.roll_for_current_player()
         self.assertNotEqual(180, player.current_turn_score)
+
+    def test_for_bot(self):
+        bot_player = BotPlayer("bot", LowRiskStrategy())
+        player = Player("")
+
+        game = Game()
+        game.players = [bot_player, player]
+        game.dice = Dice([4, 2, 3, 1])
+
+        game.play_for_bot()
+        
+        self.assertEqual(9, bot_player.score)
+        self.assertEqual(0, player.current_turn_score)
+        self.assertEqual(1, game.turn)
+
+    def test_multiple_bots(self):
+        bot_player = BotPlayer("bot", LowRiskStrategy())
+        bot_player_2 = BotPlayer("bot-2", LowRiskStrategy())
+        player = Player("")
+        game = Game()
+        game.players = [bot_player, bot_player_2, Player(" ")]
+        game.dice = Dice([6, 1, 2, 3, 6, 1])
+        
+        game.play_for_bot()
+        
+        self.assertEqual(0, bot_player.score)
+        self.assertEqual(2 + 3 + 6, bot_player_2.score)
+        self.assertEqual(2, game.turn)
