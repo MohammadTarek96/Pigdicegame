@@ -195,10 +195,10 @@ firefox htmlcov/index.html
 
 ```
 # Generate documintation for the project 
-make pydoc 
+make pdoc 
 
 # Generate UML diagrams 
-make 
+make pyreverse
 ```
 
 ### Remove generated files
