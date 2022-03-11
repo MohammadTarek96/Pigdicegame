@@ -154,6 +154,7 @@ class GameShell(cmd.Cmd):
                 )
             except ValueError:
                 print(f"I cannot cheat for {arg}")
+        self.reset_prompt()
 
     def do_end(self, arg):
         """End [arg].
