@@ -119,15 +119,17 @@ class GameShell(cmd.Cmd):
             print("end requires an additional argument.Type '? end' for help")
             return False
         elif arg.lower() in ['t', 'turn']:
-            self.do_pass("")
+            return self.do_pass("")
         elif arg.lower() in ['g', 'game']:
-            self.do_exit("")
+            return self.do_exit("")
         else:
             print("argument not recognized. Type '? end' for a list of possible arguments")
 
     def do_pass(self, _):
         self.game.end_turn_for_current_player()
-
+        if self.game.game_ended:
+            print("The game ended. Hopefully, you had fun! See you in another game?")
+            return self.do_restart(_)
 
     # game commands 
     def do_restart(self,_):
