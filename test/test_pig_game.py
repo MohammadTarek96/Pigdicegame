@@ -128,10 +128,6 @@ class TestGame(unittest.TestCase):
         self.assertTrue(game.check_if_game_ended())
         self.assertTrue(game.game_ended)
 
-        # check that it did simulate rolls
-        self.assertEqual(105 + 6 + 6, player.score)
-        self.assertEqual(103 + 6, player_2.score)
-        self.assertEqual(10, player_3.score)
 
     def test_cheat(self):
         player = Player("p1")

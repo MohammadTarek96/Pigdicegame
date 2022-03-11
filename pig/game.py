@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+"""Module that hold the information about the Game class."""
 
 from random import randint
 
@@ -9,9 +10,10 @@ from player import BotPlayer, HumanPlayer
 
 
 class Game:
-    """
-    The class that will hold the data about the player,
-    and will invoke the methods of the non-human players.
+    """Class representing the game.
+
+    Holds the information about the players, the dice and if needed invokes
+    the bot actions.
     """
 
     players = None
@@ -20,24 +22,26 @@ class Game:
     game_ended = False
 
     def __init__(self):
-        """Start the game and the number of the players"""
+        """Start the game and the number of the players."""
         self.players = []
         self.dice = Dice()
 
     def get_player_count(self):
-        """
+        """Getter for the player count.
+
         :return: int - the list of players that are currently in the game
         """
         return len(self.players)
 
     def add_new_player(self, new_player=None):
         """
-        Adds a new player to the game, if there is a free spot. The game is limited to 4 players.
+        Add a new player to the game, if there is a free spot.
+
+        The game is limited to 4 players.
         :param new_player: the new player that will be added. if the
          new player is not provided, a bot player will be added
         :return : the instance of the new player
         """
-
         # check the length of the list
         if self.get_player_count() == 4:
             raise TooManyPlayersError()
@@ -50,7 +54,8 @@ class Game:
 
     def roll_for_current_player(self):
         """
-        Performs a roll for the current player.
+        Perform a roll for the current player.
+
         :return : bool - true if it ends the turn, false otherwise
         """
         roll = self.dice.roll()
@@ -63,16 +68,13 @@ class Game:
             return True
 
         current_player.current_turn_score += roll
-        print(
-            f"\t{current_player.name} rolled a {roll}. His current turn score is {current_player.current_turn_score}"
-        )
+        print(f"\t{current_player.name} rolled a {roll}. His current"
+              f"turn score is {current_player.current_turn_score}")
 
         return False
 
     def end_turn_for_current_player(self):
-        """
-        Operations to be done at the end of turn
-        """
+        """Operations to be done at the end of turn."""
         # display a report with the player's accumulated score
         current_player = self.players[self.turn]
         current_player.finish_turn()
@@ -97,13 +99,12 @@ class Game:
             print(f"it's {current_player.name}'s turn!")
 
     def play_for_bot(self):
-        """
-        Plays for the bot, by letting him making decisions based on the chosen strategy
-        """
+        """Play for the bot, by using his defined strategy."""
         current_player = self.players[self.turn]
         while True:
             # roll, if the bot strategy says so
-            if current_player.strategy.should_roll(current_player.current_turn_score):
+            if current_player.strategy.should_roll(
+                    current_player.current_turn_score):
                 # check if the roll ended the bot's turn (rolled a 1)
                 if self.roll_for_current_player():
                     break
@@ -113,30 +114,27 @@ class Game:
                 break
 
     def round_end(self):
-        """
-        Finishes a round, doing all the end-of-round operations
-        """
+        """Finishes a round, doing all the end-of-round operations."""
         self.rounds += 1
         self.check_if_game_ended()
         print(self.leaderboard())
 
     def leaderboard(self):
-        """
-        Returns a leaderboard, sorted by score
-        """
+        """Return a leaderboard, sorted by score."""
         return "Leaderboard:\n" + "\n".join(
-            map(
-                lambda x: f"{x[0] + 1}) {x[1].name}: {x[1].score}",
-                enumerate(sorted(self.players, key=lambda x: x.score, reverse=True)),
-            )
-        )
+            map(lambda x: f"{x[0] + 1}) {x[1].name}: {x[1].score}",
+                enumerate(sorted(self.players, key=lambda x: x.score,
+                                  reverse=True))))
 
     def check_if_game_ended(self):
+        """Check whether the game has ended.
+
+        Check if the game has any winner, by counting the number of
+        players over 100 points, and if there are multiple, it declares
+        a draw
+        :return: bool, True if the game has ended, False otherwise
         """
-        The function checks whether the game has ended, and simulates a roll sequence for everyone over 100
-        :return: bool, True if the game has ended, k
-        """
-        players_over_100 = list(filter(lambda x: x.score > 100, self.players))
+        players_over_100 = list(filter(lambda x: x.score >= 100, self.players))
         # No winners
         if len(players_over_100) == 0:
             return False
@@ -144,44 +142,25 @@ class Game:
         # only one win
         if len(players_over_100) == 1:
             self.game_ended = True
-            print(
-                f"AAAAAAAAAAAAnd the winner iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiis: {players_over_100[0].name}"
-            )
-            print(f"Took {self.rounds}")
+            print(f"AAAAAAAAAAAAnd the winner iiiiiiiiiiiiiiiiiiiiiii"
+                  f"iiiiiiiiiiis: {players_over_100[0].name}")
+            print(f"Took {self.rounds} rounds to complete the game!")
             return True
 
-        # since there are multiple winners, roll for everyone over 100 until they hit 1
-        print("Multiple winners! Rolling for everyone until they hit a 1")
-        for i in players_over_100:
-            # roll until 1
-            while True:
-                print(f"Rolling for {i.name}")
-                roll = self.dice.roll()
-
-                # break when roll = 1
-                if roll == 1:
-                    print(f"Rolled a 1. Final score for {i.name} is {i.score}")
-                    break
-                i.score += roll
-                print(f"Rolled a {roll}. {i.name}'s score is {i.score}")
-
-        # extract the winner by sorting the list of players over 100
-        winner = sorted(players_over_100, key=lambda x: x.score, reverse=True)[0]
+        print("Multiple winners! Draw!")
+        print(f"Took {self.rounds} rounds to complete the game!")
         self.game_ended = True
-        # display the winner
-        print(
-            f"The results are in. The winner is {winner.name}, with a score of {winner.score}"
-        )
-        print(f"Took {self.rounds}")
         return True
 
     def cheat_for_current_player(self, score):
-        """
-        Cheats for the current player, by adding the score defined in the method to the current_score
+        """Cheat for the current player.
+
+        Add the score defined in the method to the current_score
         Score = 1 will be treated as normal
         :param score: the score that the player gets
         """
-        # A little magic trick, create and pass a cheat-dice for one roll, and then go back to the default one
+        # A little magic trick, create and pass a cheat-dice
+        # for one roll, and then go back to the default one
         old_dice = self.dice
         self.dice = Dice([score])
         self.roll_for_current_player()
@@ -189,35 +168,36 @@ class Game:
 
         # display a message for the player
         if score < 0 or score > 6:
-            print(
-                f"Huh? That is weird and unbelievable!!! The {self.players[self.turn].name} just rolled for {score}"
-            )
+            print(f"Huh? That is weird and unbelievable!!! The"
+                  f"{self.players[self.turn].name} just rolled for {score}")
 
 
 class Dice:
-    """
-    Class that will be responsible for the random parts of the game. Provides a test configuration, that will return
-    the numbers provided in the list
+    """Class that holds the information about the dice.
+
+    Is responsible for the random parts of the game.
+    Provides a test configuration, that will return the numbers provided
+    in the list
     """
 
     test_list = None
     test_index = 0
 
     def __init__(self, test_list=None):
-        """
-        Initialize the test_list with the value provided
+        """Initialize the test_list with the value provided.
+
         :param test_list: list[int] - the list that the dice should return
         """
         self.test_list = test_list
 
     def roll(self):
-        """
+        """Perform a roll.
+
         When test_list is not defined (default behavior)
             Return a random number between 1 and 6
         When test_list is defined:
             Return the value at test_index and increases it
         """
-
         if self.test_list is None:
             return randint(1, 6)
         x = self.test_list[self.test_index]

@@ -66,7 +66,7 @@ pylint:
 
 flake8:
 	@$(call MESSAGE,$@)
-	-flake8 pig
+	-flake8 pig --ignore=H601
 
 lint: flake8 pylint
 
