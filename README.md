@@ -65,7 +65,7 @@ q > to quit the game.
 This game was developed in a TDD enviroment.
 ----------------------------------------------------------------------------------
 The next will be a list of commands to run the game in the terminal, how to install the requiermnts to run the project development enviroment,
-unittest the code, generate documentation, generate UML diagrams, and metrics. 
+unittest the code, generate documentation, generate UML diagrams, for more look into the makefile! 
 
 Get going and Run the game
 --------------------------
