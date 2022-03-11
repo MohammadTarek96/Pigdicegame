@@ -191,6 +191,9 @@ You can open a web browser to inspect the code coverage as a generated HTML repo
 ```
 firefox htmlcov/index.html
 ```
+
+#### Generating documintation and UML diagrams
+
 ```
 # Generate documintation for the project 
 make pydoc 
