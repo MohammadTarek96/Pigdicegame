@@ -136,3 +136,14 @@ class TestGame(unittest.TestCase):
         self.assertEqual(105 + 6 + 6, player.score)
         self.assertEqual(103 + 6, player_2.score)
         self.assertEqual(10, player_3.score)
+
+    def test_cheat(self):
+        player = Player("p1")
+        game = Game()
+        game.players = [player]
+        # cheat, current score = 90
+        game.cheat_for_current_player(90)
+        self.assertEqual(90, player.current_turn_score)
+        # Make sure that the cheat only happens once
+        game.roll_for_current_player()
+        self.assertNotEqual(180, player.current_turn_score)

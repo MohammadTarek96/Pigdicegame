@@ -117,6 +117,16 @@ class Game:
         self.game_ended = True
         print(f"The results are in. The winner is {winner.name}, with a score of {winner.score}")
         return True
+
+    def cheat_for_current_player(self, score):
+        # A little magic trick 
+        old_dice = self.dice
+        self.dice = Dice([score])
+        self.roll_for_current_player()
+        self.dice = old_dice
+        if score < 0 or score > 6:
+            print(f"Huh? That is weird and unbelievable!!! The {self.players[self.turn].name} just rolled for {score}")
+
             
 
 class Dice:
