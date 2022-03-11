@@ -191,21 +191,23 @@ You can open a web browser to inspect the code coverage as a generated HTML repo
 ```
 firefox htmlcov/index.html
 ```
-
+```
 # Generate documintation for the project 
 make pydoc 
+```
 
+```
 # Generate UML diagrams 
 make 
-
+```
 
 ### Remove generated files
 
 You can remove all generated files by this.
-
+```
 # Remove files generated for tests or caching
 make clean
 
 # Do also remove all you have installed
 make clean-all
-
+```
