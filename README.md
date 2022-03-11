@@ -43,16 +43,16 @@ high risk: will pass turn on reaching 18 points.
 
 
 list of the gameplay commands:
-----------------------------------------------------------------------------------
-? > list of commands 
-help > list of commands 
-add player > to add a human player 
-add bot > to add a a bot player 
-roll > to roll the die 
-pass > to end turn and keep your score
+------------------------------
+? > list of commands. 
+help > list of commands.
+add player > to add a human player. 
+add bot > to add a a bot player. 
+roll > to roll the die. 
+pass > to end turn and keep your score.
 Cheat > to add extra points to your turn without rolling the dice
-restart > to resatrt the game 
-q > to quit the game
+restart > to resatrt the game. 
+q > to quit the game.
 
 This game was developed in a TDD enviroment.
 ----------------------------------------------------------------------------------
