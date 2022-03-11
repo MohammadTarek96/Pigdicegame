@@ -170,15 +170,6 @@ make pylint
 make lint
 ```
 
-You might need to update the Makefile if you change the name of the source directory currently named `guess/`.
-
-Read more on:
-
-* [flake8](https://flake8.pycqa.org/en/latest/)
-* [pylint](https://pylint.org/)
-
-
-
 ### Run the unittests
 
 You can run the unittests like this. The testfiles are stored in the `test/` directory.
